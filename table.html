@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DASHMIN - Bootstrap Admin Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>MEDIPLACE</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.png" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">User</h6>
+                        <span id="userName">#MediPlace</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <div  id="orderTab">
+                        <a href="form.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Order</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown" hidden>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-user-circle me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Account</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-left">
+                                    <div class="ms-2">
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown" id="navHide">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" onclick="updateNotifications()">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex badge" style="color: red" id="notify" onclick="updateNotifications()">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0" id="notifiyMessage">Profile updated</h6>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="d-none d-lg-inline-flex">My Account</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" onclick="logOut()" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <!-- <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Basic Table</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mark@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>jacob@email.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Accented Table</h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mark@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>jacob@email.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Hoverable Table</h6>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mark@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>jacob@email.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Color Table</h6>
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mark@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>jacob@email.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Bordered Table</h6>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mark@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>jacob@email.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Table Without Border</h6>
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mark@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>jacob@email.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+                    <div class="col-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Responsive Table</h6>
+                            <div class="table-responsive">
+                                <table class="table" style="color: black; text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" hidden>Order ID</th>
+                                            <th scope="col">Item Code</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Patient Name</th>
+                                            <th scope="col">BHT</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Order Date & Time</th>
+                                            <th scope="col">Level Of Urgency</th>
+                                            <th scope="col">Order Action</th>
+                                            <th scope="col" id="idHidden" hidden>Hidden</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tBodyLoad">
+                                        
+                                    </tbody>
+                                    <!-- <tr> -->
+                                            <!-- <th scope="row">1</th>
+                                            <td>John</td>
+                                            <td>Doe</td>
+                                            <td>jhon@email.com</td>
+                                            <td>USA</td>
+                                            <td>123</td>
+                                            <td>Member</td> -->
+                                        <!-- </tr> -->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+            <div id="container" class="container-fluid pt-4 px-4"></div>
+
+            <!-- Footer Start -->
+
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script>
+
+        let user = window.localStorage.getItem('user');
+        user = JSON.parse(user);
+        let disabled = null;
+        if(user.userType === 1) {
+            disabled = 'disabled';
+            document.getElementById("navHide").innerHTML = "";
+        }
+
+        if(user.userType === 2) {
+            document.getElementById("orderTab").innerHTML = '<a href="form.html" class="nav-item nav-link" id="orderTab" hidden><i class="fa fa-table me-2"></i>Order</a>';
+            console.log("order tab " + document.getElementById("orderTab").innerHTML);
+            // '<a href="form.html" class="nav-item nav-link" id="orderTab" hidden><i class="fa fa-table me-2"></i>Order</a>';
+        }
+        function logger() {
+            alert("log out")
+        }
+        
+        function updateNotifications() {
+            $.ajax({
+            method: 'PUT',
+            url: 'http://64.227.140.62:8080/order/update-read',
+            contentType: "application/json",
+            async: true,
+            success: function (response) {
+                console.log("success notifying");
+            }
+        });
+        }
+
+        $.ajax({
+            method: 'GET',
+            url: 'http://64.227.140.62:8080/order/new-count',
+            contentType: "application/json",
+            async: true,
+            success: function (response) {
+                let arr = response;
+                console.log('new count: '+arr);
+                document.getElementById('notify').innerHTML = arr + " New Orders";
+                document.getElementById('notifiyMessage').innerHTML = "You have new "+ arr + " Orders.";
+            }
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "http://64.227.140.62:8080/order/get-list/orders",
+            contentType: "application/json",
+            async: true,
+            success: function (response) {
+                let arr = response;
+                console.log(arr);
+                let tBody = document.getElementById("tBodyLoad");
+                console.log(tBody);
+                console.log(arr.length);
+                console.log(tBody.innerHTML);
+                console.log(arr[0]);
+                let bb = "";
+                for(i = 0; i < arr.length; i++) {
+                    let status = arr[i].status;
+                    let style = "";
+                    if(arr[i].status === 1) {
+                        status = "Pending";
+                    } else if(arr[i].status === 2) {
+                        status = "Accepted";
+                    } else if(arr[i].status === 3) {
+                        status = "Delivered To Hospital";
+                    } else if(arr[i].status === 4) {
+                        status = "Ordered From Supplier";
+                    } else if(arr[i].status === 5) {
+                        status = "Delivered To MSD";
+                    } else if(arr[i].status === 6) {
+                        status = "Out Of Stock";
+                    }
+
+                    if(arr[i].urgentRep === 1) {
+                        style = "background-color:#FF6A6A";
+                    } else if(arr[i].urgentRep === 2) {
+                        style = "background-color:yellow"
+                    } else if(arr[i].urgentRep === 3) {
+                        style = "background-color:#0CF901"
+                    }
+
+                    bb += '<tr style='+ style + '><td id="orderId" class="nr" hidden>' + arr[i].id + '</td><td>' + arr[i].itemCode.toUpperCase() + '</td><td>' + 
+                        arr[i].description + '</td><td>'+ arr[i].quantity + '</td><td>'+ arr[i].patient 
+                        + '</td><td>'+ arr[i].bht + '</td><td>'+ 
+                            '<button type="button" class="btn btn-sm btn-secondary m-2">'+ status + '</button>'
+                            + '</td><td>'+ 
+                            arr[i].orderTime + '</td><td>'+ arr[i].urgentLevel + '</td><td>'+ 
+                            '<button type="button" class="btn btn-sm btn-secondary m-2" id="'+arr[i].id+'" onClick="loadOrderData('+
+                            arr[i].id +')" '+ disabled +'>'+arr[i].id+'</button>' 
+                            +'</td></tr>';
+                    $(bb).appendTo('#tBodyLoad');
+                    bb = "";    
+
+                }
+                console.log(tBody.innerHTML);
+            }
+        });
+
+
+        function loadOrderData(id) {
+                    let oid = id.innerHTML;
+                    console.log(id.innerHTML)
+                    $.ajax({
+                        method: "GET",
+                        url: "http://64.227.140.62:8080/order/get-Order/id/" + oid,
+                        contentType: "application/json",
+                        async: true,
+                        success: function (response) {
+                            console.log(response);
+                            window.localStorage.setItem('orderData', JSON.stringify(response));
+                            window.location.replace('form-desc.html')
+                        }
+                    });
+                }
+
+                function logOut() {
+                    let text;
+                    if (confirm("Are you sure you want to logout?") == true) {
+                        window.location.replace('index.html')
+                    } else {
+                        window.location.replace('table.html')
+                    }
+                    window.localStorage.clear();
+                }
+        
+    </script>
+</body>
+
+</html>
